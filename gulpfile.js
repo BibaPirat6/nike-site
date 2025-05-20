@@ -5,34 +5,14 @@ const concat = require("gulp-concat");
 const browserSync = require("browser-sync").create();
 const autoprefixer = require("gulp-autoprefixer");
 const clean = require("gulp-clean");
-
-// const avif = require("gulp-avif");
-// const webp = require("gulp-webp").default;
 const imagemin = require("gulp-imagemin");
-// const merge = require("merge-stream");
-// const newer = require("gulp-newer");
+const newer = require("gulp-newer");
 
-// function images() {
-//   const avifImages = src("app/images/src/*.*")
-//     .pipe(newer("app/images/dist"))
-//     .pipe(avif({ quality: 50 }))
-//     .pipe(dest("app/images/dist"));
-//   const webpImages = src("app/images/src/*.*")
-//     .pipe(newer("app/images/dist"))
-//     .pipe(webp())
-//     .pipe(dest("app/images/dist"));
-//   const originalImages = src("app/images/src/*.*")
-//     .pipe(newer("app/images/dist"))
-//     .pipe(imagemin())
-//     .pipe(dest("app/images/dist"));
-
-//   return merge(avifImages,webpImages, originalImages);
-// }
-
-function images(){
-  return src("app/images/src/*")
-  .pipe(imagemin())
-  .pipe(dest("app/images/dist"))
+function images() {
+  return src("app/images/src/*", { encoding: false })
+    .pipe(newer("app/images/dist"))
+    .pipe(imagemin())
+    .pipe(dest("app/images/dist"));
 }
 
 function scripts() {
