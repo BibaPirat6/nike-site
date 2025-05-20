@@ -7,12 +7,24 @@ const autoprefixer = require("gulp-autoprefixer");
 const clean = require("gulp-clean");
 const imagemin = require("gulp-imagemin");
 const newer = require("gulp-newer");
+const include = require("gulp-include");
+
+function pages() {
+  return src("app/pages/*html")
+    .pipe(
+      include({
+        includePaths: "app/components",
+      })
+    )
+    .pipe(dest("app"))
+    .pipe(browserSync.stream());
+}
 
 function images() {
   return src("app/images/src/*", { encoding: false })
-    .pipe(newer("app/images/dist"))
+    .pipe(newer("app/images"))
     .pipe(imagemin())
-    .pipe(dest("app/images/dist"));
+    .pipe(dest("app/images"));
 }
 
 function scripts() {
@@ -50,6 +62,7 @@ function watching() {
   watch(["app/scss/style.scss"], styles);
   watch(["app/images/src"], images);
   watch(["app/js/main.js"], scripts);
+  watch(["app/pages/*", "app/components/*"], pages);
   watch(["app/*.html"]).on("change", browserSync.reload);
 }
 
@@ -61,7 +74,7 @@ function building() {
   return src(
     [
       "app/css/style.min.css",
-      "app/images/dist/*.*",
+      "app/images/*.*",
       "app/fonts/*.*",
       "app/js/main.min.js",
       "app/**/*.html",
@@ -76,6 +89,7 @@ exports.styles = styles;
 exports.scripts = scripts;
 exports.watching = watching;
 exports.images = images;
+exports.pages = pages;
 
 exports.build = series(cleanDist, building);
-exports.default = parallel(styles, images, scripts, watching);
+exports.default = parallel(styles, images, scripts, pages, watching);
