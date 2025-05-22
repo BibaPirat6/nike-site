@@ -8,6 +8,7 @@ const clean = require("gulp-clean");
 const imagemin = require("gulp-imagemin");
 const newer = require("gulp-newer");
 const include = require("gulp-include");
+const webpack = require("webpack-stream");
 
 function pages() {
   return src("app/pages/*html")
