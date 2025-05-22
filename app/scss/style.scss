@@ -314,13 +314,18 @@ header {
     margin-right: 100px;
     margin-top: 38px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     img {
-      position: absolute;
-      left: -25%;
-      top: -5%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
   }
 }
+
 
 section {
   margin-bottom: 50px;
@@ -766,4 +771,46 @@ footer {
 }
 .collection-box-arrows-left:hover,.collection-box-arrows-right:hover{
   transform: scale(1.04);
+}
+
+
+.slide {
+  position: relative;
+}
+
+.slide-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.slide-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.add-to-cart-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--red);
+  color: var(--white);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: .2s ease;
+  cursor: pointer;
+}
+.add-to-cart-circle p{
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.slide:hover .add-to-cart-circle {
+  opacity: 1;
 }

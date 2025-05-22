@@ -57,3 +57,22 @@ colorsNike.forEach((color) => {
     }
   });
 });
+
+const imageList = [
+  "../images/header-banner1.png",
+  "../images/header-banner2.png",
+  "../images/header-banner3.png",
+  "../images/header-banner4.png",
+];
+let currentIndex = 0;
+const mainImg = document.querySelector(".mainImg");
+const arrow = document.querySelector(".move-toggle-slider");
+const toggleImg = (src) => {
+  currentIndex = imageList.indexOf(src);
+  mainImg.src = src;
+};
+arrow.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % imageList.length;
+  mainImg.src = imageList[currentIndex];
+});
+
