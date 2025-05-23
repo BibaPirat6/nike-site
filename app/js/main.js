@@ -249,3 +249,8 @@ function enableScroll() {
   window.removeEventListener("touchmove", preventDefault, wheelOpt);
   window.removeEventListener("keydown", preventDefaultForScrollKeys, false);
 }
+
+document.getElementById('close-modal-burger').addEventListener('click',()=>{
+  document.querySelector(".modal-burger-menu").classList.remove("open-modal");
+  enableScroll()
+})
