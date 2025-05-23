@@ -117,48 +117,16 @@ arrow.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const addButtons = document.querySelectorAll(".add-to-cart-circle");
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const totalSumProducts = cart.reduce(
-    (sum, item) => sum + parsePrice(item.newPrice) * item.quantity,
-    0
-  );
-
-  document.getElementById("cart-count-products").textContent = totalItems;
-  document.getElementById("buy-box-count").textContent = totalItems;
-  document.getElementById("buy-box-cost").textContent = totalSumProducts;
-
-  addButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const slide = button.closest(".slide");
-      const img = slide.querySelector("img").getAttribute("src");
-      const title = slide.querySelector("h6").textContent;
-      const newPrice = slide.querySelector(".slide-cost h5").textContent;
-      const oldPrice = slide.querySelector(".slide-cost h6").textContent;
-
-      const product = {
-        id: Date.now().toString(),
-        title,
-        img,
-        newPrice,
-        oldPrice,
-        quantity: 1,
-      };
-
-      addToCart(product);
-    });
-  });
-
+  const mainBuyButton = document.getElementById("buy-nike-winterized");
   function parsePrice(priceString) {
     return Number(priceString.replace(/[^\d]/g, ""));
   }
-
   function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
     if (totalQuantity >= 99) {
-      console.log("Нельзя добавить больше 99 товаров в корзину");
+      alert("Нельзя добавить больше 99 товаров в корзину");
       return;
     }
 
@@ -180,7 +148,104 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById("cart-count-products").textContent = totalItems;
+    updateCartUI();
   }
+  function updateCartUI() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const totalSumProducts = cart.reduce(
+      (sum, item) => sum + parsePrice(item.newPrice) * item.quantity,
+      0
+    );
+
+    document.getElementById("cart-count-products").textContent = totalItems;
+    document.getElementById("buy-box-count").textContent = totalItems;
+    document.getElementById("buy-box-cost").textContent = totalSumProducts;
+  }
+  updateCartUI();
+  addButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const slide = button.closest(".slide");
+      const img = slide.querySelector("img").getAttribute("src");
+      const title = slide.querySelector("h6").textContent;
+      const newPrice = slide.querySelector(".slide-cost h5").textContent;
+      const oldPrice = slide.querySelector(".slide-cost h6").textContent;
+
+      const product = {
+        id: Date.now().toString(),
+        title,
+        img,
+        newPrice,
+        oldPrice,
+        quantity: 1,
+      };
+
+      addToCart(product);
+    });
+  });
+
+  mainBuyButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const title = document.querySelector(
+      ".header-content-text-name h1"
+    ).textContent;
+    const img = document
+      .querySelector(".header-products .header-product img")
+      .getAttribute("src");
+    const newPrice = document.querySelector(".header-content h2").textContent;
+    const oldPrice = "";
+
+    const product = {
+      id: Date.now().toString(),
+      title,
+      img,
+      newPrice,
+      oldPrice,
+      quantity: 1,
+    };
+
+    addToCart(product);
+  });
 });
+
+document.querySelector(".burger-menu").addEventListener("click", () => {
+  document.querySelector(".modal-burger-menu").classList.add("open-modal");
+  disableScroll();
+});
+let keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+function preventDefault(e) {
+  e.preventDefault();
+}
+function preventDefaultForScrollKeys(e) {
+  if (keys[e.keyCode]) {
+    preventDefault(e);
+    return false;
+  }
+}
+let supportsPassive = false;
+try {
+  window.addEventListener(
+    "test",
+    null,
+    Object.defineProperty({}, "passive", {
+      get: function () {
+        supportsPassive = true;
+      },
+    })
+  );
+} catch (e) {}
+let wheelOpt = supportsPassive ? { passive: false } : false;
+let wheelEvent =
+  "onwheel" in document.createElement("div") ? "wheel" : "mousewheel";
+function disableScroll() {
+  window.addEventListener("DOMMouseScroll", preventDefault, false);
+  window.addEventListener(wheelEvent, preventDefault, wheelOpt);
+  window.addEventListener("touchmove", preventDefault, wheelOpt);
+  window.addEventListener("keydown", preventDefaultForScrollKeys, false);
+}
+function enableScroll() {
+  window.removeEventListener("DOMMouseScroll", preventDefault, false);
+  window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
+  window.removeEventListener("touchmove", preventDefault, wheelOpt);
+  window.removeEventListener("keydown", preventDefaultForScrollKeys, false);
+}

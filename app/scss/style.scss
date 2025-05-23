@@ -816,6 +816,19 @@ footer {
   display: none;
 }
 
+.modal-burger-menu {
+  display: none;
+  position: fixed;
+  z-index: 200;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba($color: #ffffff, $alpha: 0.9);
+}
+
+.open-modal{
+  display: flex;
+}
+
 @media (max-width: 1670px) {
   .header-content {
     gap: 0;
