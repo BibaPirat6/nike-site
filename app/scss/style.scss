@@ -95,12 +95,10 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    ul {
+    .nav-menu {
       display: flex;
       justify-content: start;
       align-items: center;
-    }
-    .nav-menu {
       gap: 60px;
     }
     .logo {
@@ -326,7 +324,6 @@ header {
   }
 }
 
-
 section {
   margin-bottom: 50px;
 }
@@ -417,6 +414,7 @@ section {
     display: flex;
     transition: transform 0.4s ease;
     gap: 26px;
+    will-change: transform;
   }
 
   .slide {
@@ -602,7 +600,7 @@ footer {
   padding-top: 40px;
   padding-bottom: 20px;
   color: var(--white);
-  margin-bottom: 100px;
+  margin-bottom: 93px;
   h3 {
     margin-bottom: 10px;
   }
@@ -618,17 +616,17 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    
-    & li a{
-      transition: all .4s ease;
-      &:hover{
+
+    & li a {
+      transition: all 0.4s ease;
+      &:hover {
         color: var(--red);
       }
     }
   }
-  .footer-contact a{
-    transition: all .4s ease;
-    &:hover{
+  .footer-contact a {
+    transition: all 0.4s ease;
+    &:hover {
       color: var(--red);
     }
   }
@@ -680,7 +678,6 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  cursor: pointer;
 }
 
 .scroll-down span {
@@ -765,14 +762,14 @@ footer {
   color: var(--red);
 }
 
-
-.collection-box-arrows-left,.collection-box-arrows-right{
-  transition: all .2s ease;
+.collection-box-arrows-left,
+.collection-box-arrows-right {
+  transition: all 0.2s ease;
 }
-.collection-box-arrows-left:hover,.collection-box-arrows-right:hover{
+.collection-box-arrows-left:hover,
+.collection-box-arrows-right:hover {
   transform: scale(1.04);
 }
-
 
 .slide {
   position: relative;
@@ -803,14 +800,234 @@ footer {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: .2s ease;
+  transition: 0.2s ease;
   cursor: pointer;
 }
-.add-to-cart-circle p{
+.add-to-cart-circle p {
   font-size: 2.5rem;
   line-height: 1;
 }
 
 .slide:hover .add-to-cart-circle {
   opacity: 1;
+}
+
+.burger-menu {
+  display: none;
+}
+
+@media (max-width: 1670px) {
+  .header-content {
+    gap: 0;
+    max-width: 90%;
+  }
+  header nav {
+    width: 90%;
+  }
+  main {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .collection-box {
+    gap: 50px;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .collection-box-slider-track {
+    gap: 20px !important;
+  }
+}
+@media (max-width: 1500px) {
+  .nav-menu {
+    gap: 20px !important;
+  }
+  .header-banner {
+    margin: 20px 0 50px 50px !important;
+  }
+  .footer-container {
+    max-width: 90%;
+    padding: 0 10px;
+  }
+  .collection-box-slider-track .slide {
+    width: 200px;
+  }
+}
+@media (max-width: 1200px) {
+  .social-media {
+    gap: 5px !important;
+  }
+  .header__nav-box {
+    gap: 20px !important;
+  }
+  .header-content {
+    grid-template-columns: 1fr 3fr !important;
+  }
+  .header-banner {
+    width: 500px !important;
+    height: 500px !important;
+  }
+}
+@media (max-width: 1120px) {
+  .social-media {
+    gap: 5px !important;
+  }
+  .header__nav-box {
+    gap: 20px !important;
+  }
+  .nav-menu {
+    display: none !important;
+  }
+  .burger-menu {
+    display: block;
+    cursor: pointer;
+  }
+  .logo {
+    transform: translateX(0%) !important;
+    position: static !important;
+  }
+  .header-toggle {
+    display: none;
+  }
+  .header-banner {
+    width: 300px !important;
+    height: 300px !important;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 10px !important;
+  }
+  h5 {
+    font-size: 1.25rem;
+  }
+  h6 {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+  .btn1 {
+    padding: 15px 34px;
+  }
+  .header-content-text-name {
+    margin-bottom: 10px;
+  }
+  .michel-jordan,
+  .basketball-circle {
+    display: none;
+  }
+  .sub {
+    height: auto;
+  }
+  .reviews-list {
+    gap: 20px;
+  }
+  .footer-container {
+    gap: 50px !important;
+  }
+}
+@media (max-width: 900px) {
+  .social-media {
+    display: none !important;
+  }
+  .header-functions {
+    gap: 10px !important;
+    padding: 15px 20px !important;
+  }
+  .header-content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .header-banner {
+    margin: 0 !important;
+  }
+  .buy-box {
+    gap: 0;
+  }
+  .about-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .sub > p {
+    margin-bottom: 40px;
+  }
+  .sub form {
+    max-width: 80%;
+  }
+}
+@media (max-width: 620px) {
+  .social-media {
+    display: none !important;
+  }
+  .header-functions {
+    gap: 10px !important;
+    padding: 15px 20px !important;
+  }
+  .header-products {
+    flex-wrap: wrap;
+  }
+  .header-desc {
+    flex-direction: column;
+  }
+  .about-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 5px;
+  }
+  .about-cards .card {
+    padding: 30px 10px;
+  }
+  .footer-container {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .footer-about {
+    grid-column: span 2;
+  }
+  .review > img {
+    display: none;
+  }
+}
+@media (max-width: 460px) {
+  .header-content-text-name {
+    flex-wrap: wrap;
+  }
+  .header-products {
+    flex-direction: column;
+  }
+  header nav {
+    width: 100% !important;
+    padding: 0 10px;
+  }
+  .header-content {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 10px;
+  }
+  .buy-box {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .buy-box .btn1 {
+    width: 100%;
+    text-align: center;
+  }
+  header {
+    margin-bottom: 40px;
+  }
+  .scroll-container {
+    margin-bottom: 40px;
+  }
+  .review > img {
+    max-width: 100%;
+    height: 200px;
+  }
+
+  footer {
+    margin-bottom: 140px;
+  }
+  .footer-container {
+    gap: 40px 20px !important;
+  }
 }

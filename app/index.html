@@ -20,6 +20,7 @@
                     <li class="animated-link"><a href="#contacts">Контакты</a></li>
                 </ul>
                 <a href="#" class="logo"><img src="../images/logo.svg" alt="logo"></a>
+                <div class="burger-menu"><img src="../images/icon-burger-menu.svg" alt="menu"></div>
                 <div class="header__nav-box">
                     <ul class="social-media">
                         <li><a href="https://www.instagram.com"><img src="../images/icon-instagram.svg"
@@ -33,7 +34,7 @@
                         </div>
                         <div class="function-cart">
                             <img src="../images/icon-cart.svg" alt="cart">
-                            <div class="count-products"><span>0</span></div>
+                            <div id="cart-count-products" class="count-products"><span>0</span></div>
                         </div>
                     </div>
                 </div>
@@ -115,8 +116,8 @@
 
     <div class="buy-box">
         <div class="text">
-            <p>Выбрано 2 товара</p>
-            <h5>К отплате 12 998 ₽ </h5>
+            <p>Выбрано <span id="buy-box-count">2</span> товара(-ов)</p>
+            <h5>К отплате <span id="buy-box-cost">12 998</span> ₽ </h5>
         </div>
         <a href="#" class="btn1">Оформить заказ</a>
     </div>
